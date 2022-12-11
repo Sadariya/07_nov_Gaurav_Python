@@ -1,0 +1,7 @@
+City : Surat	
+City : Rajkot	
+City : Ahmedabad
+City : rajkot	
+City : python	
+City : cities	
+City : ahmedabad	
