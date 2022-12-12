@@ -32,6 +32,10 @@ A) What are oops concepts?
                     Encapsulation is a example of capsul in which
                     powder of many medicines.
 
+6) Access specifier or modifier :-
+                                1_Public
+                                2_Private
+
 B) Is multiple inheritance supported in java ?
 
 --> Yes ,multiple inheritance is supported in java.
