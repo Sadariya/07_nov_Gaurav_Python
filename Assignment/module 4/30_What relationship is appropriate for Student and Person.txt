@@ -1,0 +1,8 @@
+What relationship is appropriate for Student and Person?
+
+One name many form relationship is appropriate for Student
+and Person.
+
+--> It is example of overloading (Polymorphism).
+--> Student is Called at school.
+--> Person is Called at ouside of school.

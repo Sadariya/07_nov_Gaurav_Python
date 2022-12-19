@@ -1,0 +1,7 @@
+What relationship is appropriate for Course and Faculty
+
+-->  one to many relationship is appropriate for Course
+     and Faculty.
+
+--> many to one relationship is appropriate for Courses 
+    and single teacher.
