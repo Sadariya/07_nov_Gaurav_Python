@@ -1,0 +1,21 @@
+1)  Communicates :-  
+                    Farmer --> Communicates to respective dealers.
+                    Dealer --> Communicates to respective Farmer and Admin.
+
+2)  Login option for all
+
+3)  Notification and ads :-
+                    Dealer --> Dealers and retailers may post their ads and notifications.
+                             • Dealer will get approval by admin for their ad and notification
+                             • Dealer can edit and delete ads/notification
+                             • Dealer can show all approved/rejected notification
+
+                    Farmer --> Farmers are notified whenever dealers publish an advertisement
+                               or offer on the website through Sms message.
+
+                    Admin --> • admin will notify if retailer post any new ad
+                              • admin can edit accept/reject advertisement make by retailers
+                              • admin can accept/delete retailer post
+
+4)  feedback :- 
+                    Dealer --> 

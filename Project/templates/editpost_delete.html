@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Write script title and favicon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/x-icon" href="/static/logo/favicon.png">
+
+    <!-- Title of project -->
+    <title>Farming</title>
+
+    <style>
+        body {
+            color: #000;
+            overflow-x: hidden;
+            height: 100%;
+            background-image: url();
+            background-repeat: no-repeat;
+            background-size: 100% 100%
+        }
+
+        .card {
+            padding: 30px 40px;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            border: none !important;
+            box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+        }
+
+        .blue-text {
+            color: #00BCD4
+        }
+
+        .form-control-label {
+            margin-bottom: 0
+        }
+
+        input,
+        textarea,
+        button {
+            padding: 15px 25px;
+            border-radius: 5px !important;
+            margin: 5px 0px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            font-size: 20px !important;
+            font-weight: 300
+        }
+
+        input:focus,
+        textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #00BCD4;
+            outline-width: 0;
+            font-weight: 400
+        }
+
+        .btn-block {
+            text-transform: uppercase;
+            font-size: 15px !important;
+            font-weight: 400;
+            height: 43px;
+            cursor: pointer
+        }
+
+        .btn-block:hover {
+            color: #fff !important
+        }
+
+        button:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            outline-width: 0
+        }
+    </style>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            /* font-family: 'Poppins', sans-serif; */
+        }
+
+        body {
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        p {
+            margin: 0px;
+        }
+
+        .container {
+            margin: 50px auto;
+        }
+
+        .card {
+            width: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 25px;
+            position: relative;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        }
+
+        .card .fas.fa-arrow-right {
+            position: absolute;
+            bottom: -100px;
+            background-color: #4e9525;
+            height: 50px;
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: gold;
+            opacity: 0;
+            transform: translateY(50%);
+            transition: all 0.5s ease;
+        }
+
+        .card:hover .fas.fa-arrow-right {
+            bottom: 0px;
+            opacity: 1;
+        }
+
+        .card .fab.fa-envira,
+        .fas.fa-cut,
+        .fas.fa-people-carry {
+            font-size: 40px;
+            background-color: #0000000d;
+            height: 100px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #4e9525;
+        }
+
+        .card .h4 {
+            font-weight: 700;
+        }
+
+        .container .content {
+            max-width: 300px;
+        }
+
+        .container .content .h-6 {
+            color: #4e9525;
+            font-weight: 600;
+        }
+
+        .container .content .btn.btn-primary {
+            padding: 15px;
+            background-color: #4e9525;
+            color: white;
+            border-radius: 0px;
+            border: none;
+            box-shadow: none;
+        }
+
+        .card:hover .fab.fa-envira,
+        .card:hover .fas.fa-cut,
+        .card:hover .fas.fa-people-carry {
+            color: gold;
+            background-color: #4e9525;
+        }
+
+        @media (max-width:990px) {
+            .container .content {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width:500px) {
+            body {
+                padding: 25px;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- navbar start -->
+
+    <nav class="navbar sticky-top navbar-expand-lg bg-light ">
+        <div class="container-fluid"
+            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 6mm; margin-right: auto;">
+            <a class="navbar-brand" href="/">
+                <img src="/static/logo/favicon.png" width="50" height="50" class="d-inline-block align-text-top">
+                <!-- <a class="navbar-brand" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 8mm; margin-right: auto;">FARMING SITE</a> -->
+            </a>
+            <!-- <a class="navbar-brand" href="#"></a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    {% if username is not none%}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/notes">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
+                    </li>
+                    {% if role == 'Admin' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/adminpage">Dealer Post Ads</a></li>
+                                <li><a class="dropdown-item" href="/farmertips">Farmer Tips</a></li>
+                                <li><a class="dropdown-item" href="/farmerdata">Farmer Data</a></li>
+                                <li><a class="dropdown-item" href="/farmer_accept">Farmer Complaint</a></li>
+                                <li><a class="dropdown-item" href="/feedback">Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% if role == 'Farmer' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Farmer Page
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/farmerpage">Farmer Info</a></li>
+                                <li><a class="dropdown-item" href="/farmercomplaint">Farmer Complaint</a></li>
+                                <li><a class="dropdown-item" href="/compaint_status">Complaint Status</a></li>
+                                <li><a class="dropdown-item" href="/farming_tips">Farming Tips</a></li>
+                                <li><a class="dropdown-item" href="/Farmer_feedback">Admin Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% if role == 'Retailer' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Retailer Page
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/retailerpage">Add Ads.</a></li>
+                                <li><a class="dropdown-item" href="/editpost_delete">Edit Post</a></li>
+                                <li><a class="dropdown-item" href="/Dealer_feedback">Admin Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                    {% if username is none%}
+                    <button class="btn btn-dark mx-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#SignupModal">Signup</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#LoginModal"
+                        type="button">Login</button>
+                    {% else %}
+                    <div class="btn-group mx-2">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-expanded="false" style="background-color: rgb(0, 68, 255);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end  -->
+    {% for msg in messages %}
+
+    <div class="alert alert-{{color}} alert-dismissible fade show" role="alert">
+        <strong>{{msg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+     <!-- heading  -->
+     <div class="container-fluid" style="background-color:burlywood;">
+        <center>
+            <h1>Dealer All Post/Advertisement</h1>
+        </center>
+    </div>
+
+    <!-- retailer ads start -->
+    <div class="container">
+        <div class="d-lg-flex">
+            <div class="d-md-flex align-items-center mb-lg-0 mb-md-5">
+                {% for i in postdata%}
+                <div class="col1 me-md-4 mb-md-0 mb-5 mx-4">
+
+                    <div class="card pb-4" style="height: 450px;">
+                        <img class="fab fa-envira mt-3" src="/{{i.crop_file}}" alt="">
+                        <p class="h4 pt-4">{{i.option}}</p>
+                        <p class="p1 text-muted my-5 text"
+                            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                            {{i.crop_name}} :- {{i.crop_about}} <br><br>
+                            Quantity :- {{i.crop_quantity}}
+                        </p>
+
+                        <!-- Button trigger modal -->
+                        <span class="fas fa-arrow-right" style="color: aliceblue;" type="button" data-bs-toggle="modal"
+                            data-bs-target="#{{i.id}}">Edit</span>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Your Post</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-floating">
+                                                    <input type="text" name="crop_id" value="{{i.id}}"
+                                                        class="form-control" placeholder="FLYING FROM">
+                                                    <label>Crops ID</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-floating">
+
+                                                    <select class="form-select" name="option">
+                                                        <option selected="" hidden="">{{i.option}}</option>
+                                                        <option>seeds</option>
+                                                        <option>Crops</option>
+                                                        <option>new rates</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-floating">
+                                                    <input type="text" name="crop_name" value="{{i.crop_name}}"
+                                                        class="form-control" placeholder="FLYING FROM">
+                                                    <label>Crops Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-floating">
+                                                    <input type="text" name="crop_about" value="{{i.crop_about}}"
+                                                        class="form-control" placeholder="FLYING TO">
+                                                    <label>About Crops</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-floating">
+                                                    <input type="file" name="crop_file" value="{{i.crop_file}}" id=""
+                                                        class="form-control" placeholder="FLYING TO">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-floating">
+                                                    <input type="text" name="crop_quantity" value="{{i.crop_quantity}}"
+                                                        class="form-control" placeholder="FLYING TO">
+                                                    <label>Quantity in kgs</label>
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-12 col-md-12">
+                                                <div class="form-floating">
+                                                    <input type="text" name="crop_quantity" value="{{i.confirmation}}"
+                                                        class="form-control" placeholder="FLYING TO">
+                                                    <label>{{i.confirmation}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-4">
+                                                <center>
+                                                    <button class="btn btn-primary" type="submit" name="editpost"
+                                                        value="editpost">save
+                                                        changes
+                                                    </button>
+                                                    <a class="btn btn-danger" style="height: 1.2cm;"
+                                                        href="/delete/{{i.id}}">
+                                                        Delete
+                                                    </a>
+                                                </center>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- retailer ads end -->
+
+
+    <!-- js -->
+    <script>
+        function validate(val) {
+            v1 = document.getElementById("fname");
+            v2 = document.getElementById("lname");
+            v3 = document.getElementById("email");
+            v4 = document.getElementById("mob");
+            v5 = document.getElementById("job");
+            v6 = document.getElementById("ans");
+
+            flag1 = true;
+            flag2 = true;
+            flag3 = true;
+            flag4 = true;
+            flag5 = true;
+            flag6 = true;
+
+            if (val >= 1 || val == 0) {
+                if (v1.value == "") {
+                    v1.style.borderColor = "red";
+                    flag1 = false;
+                }
+                else {
+                    v1.style.borderColor = "green";
+                    flag1 = true;
+                }
+            }
+
+            if (val >= 2 || val == 0) {
+                if (v2.value == "") {
+                    v2.style.borderColor = "red";
+                    flag2 = false;
+                }
+                else {
+                    v2.style.borderColor = "green";
+                    flag2 = true;
+                }
+            }
+            if (val >= 3 || val == 0) {
+                if (v3.value == "") {
+                    v3.style.borderColor = "red";
+                    flag3 = false;
+                }
+                else {
+                    v3.style.borderColor = "green";
+                    flag3 = true;
+                }
+            }
+            if (val >= 4 || val == 0) {
+                if (v4.value == "") {
+                    v4.style.borderColor = "red";
+                    flag4 = false;
+                }
+                else {
+                    v4.style.borderColor = "green";
+                    flag4 = true;
+                }
+            }
+            if (val >= 5 || val == 0) {
+                if (v5.value == "") {
+                    v5.style.borderColor = "red";
+                    flag5 = false;
+                }
+                else {
+                    v5.style.borderColor = "green";
+                    flag5 = true;
+                }
+            }
+            if (val >= 6 || val == 0) {
+                if (v6.value == "") {
+                    v6.style.borderColor = "red";
+                    flag6 = false;
+                }
+                else {
+                    v6.style.borderColor = "green";
+                    flag6 = true;
+                }
+            }
+
+            flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
+
+            return flag;
+        }
+    </script>
+</body>
+
+</html>

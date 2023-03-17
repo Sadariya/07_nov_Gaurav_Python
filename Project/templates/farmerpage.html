@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Write script title and favicon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/x-icon" href="/static/logo/favicon.png">
+
+    <!-- Title of project -->
+    <title>Farming</title>
+
+</head>
+
+<body>
+
+    <!-- Topbar start -->
+    <nav class="navbar  navbar-expand-lg bg-light ">
+        <h6>Farming Solutions</h6>
+    </nav>
+    <!-- Topbar end -->
+
+    <!-- navbar start -->
+
+    <nav class="navbar sticky-top navbar-expand-lg bg-light ">
+        <div class="container-fluid"
+            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 6mm; margin-right: auto;">
+            <a class="navbar-brand" href="/">
+                <img src="/static/logo/favicon.png" width="50" height="50" class="d-inline-block align-text-top">
+                <!-- <a class="navbar-brand" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 8mm; margin-right: auto;">FARMING SITE</a> -->
+            </a>
+            <!-- <a class="navbar-brand" href="#"></a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    {% if username is not none%}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/notes">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
+                    </li>
+                    {% if role == 'Admin' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/adminpage">Dealer Post Ads</a></li>
+                                <li><a class="dropdown-item" href="/farmertips">Farmer Tips</a></li>
+                                <li><a class="dropdown-item" href="/farmerdata">Farmer Data</a></li>
+                                <li><a class="dropdown-item" href="/farmer_accept">Farmer Complaint</a></li>
+                                <li><a class="dropdown-item" href="/feedback">Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% if role == 'Farmer' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Farmer Page
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/farmerpage">Farmer Info</a></li>
+                                <li><a class="dropdown-item" href="/farmercomplaint">Farmer Complaint</a></li>
+                                <li><a class="dropdown-item" href="/compaint_status">Complaint Status</a></li>
+                                <li><a class="dropdown-item" href="/farming_tips">Farming Tips</a></li>
+                                <li><a class="dropdown-item" href="/Farmer_feedback">Admin Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% if role == 'Retailer' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Retailer Page
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/retailerpage">Add Ads.</a></li>
+                                <li><a class="dropdown-item" href="/editpost_delete">Edit Post</a></li>
+                                <li><a class="dropdown-item" href="/Dealer_feedback">Admin Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                    {% if username is none%}
+                    <button class="btn btn-dark mx-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#SignupModal">Signup</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#LoginModal"
+                        type="button">Login</button>
+                    {% else %}
+                    <div class="btn-group mx-2">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-expanded="false" style="background-color: rgb(0, 68, 255);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end  -->
+    {% for msg in messages %}
+
+    <div class="alert alert-{{color}} alert-dismissible fade show" role="alert">
+        <strong>{{msg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+    <!-- heading  -->
+    <div class="container-fluid" style="background-color:burlywood;">
+        <center>
+            <h1>Dealer Ads</h1>
+        </center>
+    </div>
+
+    <!-- Dealer All data start -->
+    <div class="container">
+        <div class="row">
+            {% for i in Dealer_data%}
+            {% if i.confirmation == 'Accept' %}
+
+            <div class=" col my-5" >
+                <div class="card " style="width: 18rem;">
+                    <img src="/{{i.crop_file}}" style="height: 200px;" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.crop_name}}</h5>
+                        <p class="card-text">
+                            About :- {{i.crop_about}} <br><br>
+                            Quantity :- {{i.crop_quantity}}
+                        </p>
+                        <a href="#" class="btn btn-primary">Sell</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Dealer All data end -->
+
+</body>
+
+</html>

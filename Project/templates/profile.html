@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Write script title and favicon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/x-icon" href="/static/logo/favicon.png">
+
+    <!-- Title of project -->
+    <title>Farming</title>
+
+</head>
+
+<body>
+
+    <!-- Topbar start -->
+    <nav class="navbar  navbar-expand-lg bg-light ">
+        <h6>Farming Solutions</h6>
+    </nav>
+    <!-- Topbar end -->
+
+    <!-- navbar start -->
+
+    <nav class="navbar sticky-top navbar-expand-lg bg-light ">
+        <div class="container-fluid"
+            style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 6mm; margin-right: auto;">
+            <a class="navbar-brand" href="/">
+                <img src="/static/logo/favicon.png" width="50" height="50" class="d-inline-block align-text-top">
+                <!-- <a class="navbar-brand" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 8mm; margin-right: auto;">FARMING SITE</a> -->
+            </a>
+            <!-- <a class="navbar-brand" href="#"></a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    {% if username is not none%}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/notes">Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
+                    </li>
+                    {% if role == 'Admin' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/adminpage">Dealer Post Ads</a></li>
+                                <li><a class="dropdown-item" href="/farmertips">Farmer Tips</a></li>
+                                <li><a class="dropdown-item" href="/farmerdata">Farmer Data</a></li>
+                                <li><a class="dropdown-item" href="/farmer_accept">Farmer Complaint</a></li>
+                                <li><a class="dropdown-item" href="/feedback">Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% if role == 'Farmer' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Farmer Page
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/farmerpage">Farmer Info</a></li>
+                                <li><a class="dropdown-item" href="/farmercomplaint">Farmer Complaint</a></li>
+                                <li><a class="dropdown-item" href="/compaint_status">Complaint Status</a></li>
+                                <li><a class="dropdown-item" href="/farming_tips">Farming Tips</a></li>
+                                <li><a class="dropdown-item" href="/Farmer_feedback">Admin Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+                    {% if role == 'Retailer' %}
+                    <div class="dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Retailer Page
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/retailerpage">Add Ads.</a></li>
+                                <li><a class="dropdown-item" href="/editpost_delete">Edit Post</a></li>
+                                <li><a class="dropdown-item" href="/Dealer_feedback">Admin Feedback</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                    {% if username is none%}
+                    <button class="btn btn-dark mx-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#SignupModal">Signup</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#LoginModal"
+                        type="button">Login</button>
+                    {% else %}
+                    <div class="btn-group mx-2">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-expanded="false" style="background-color: rgb(0, 68, 255);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><a class="dropdown-item" href="/profile">Update Profile</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end  -->
+
+    {% for msg in messages %}
+
+    <div class="alert alert-{{color}} alert-dismissible fade show" role="alert">
+        <strong>{{msg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+
+    <!-- Update Form start -->
+    <div style="background-color:plum;">
+        <div class="container" style="margin-top: 2cm; padding: 50px 350px;">
+            <form method="post" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; "
+                class="row g-3 needs-validation" novalidate>
+                {% csrf_token %}
+
+                <select name="authorised" class="form-select" aria-label="Default select example">
+                    <option selected>{{userdata.authorised}}</option>
+                </select>
+                <div class="col-md-6">
+                    <label for="validationCustom01" class="form-label">First name</label>
+                    <input type="text" name="firstname" value="{{userdata.firstname}}" class="form-control"
+                        id="validationCustom01" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Last name</label>
+                    <input type="text" name="lastname" value="{{userdata.lastname}}" class="form-control"
+                        id="validationCustom02" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div> <br>
+                <div class="col-md-6">
+                    <label for="validationCustomUsername" class="form-label">Username</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        <input type="email" name="username" value="{{userdata.username}}" class="form-control"
+                            id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                        </div>
+                    </div>
+                </div>
+                <div class="col md-6">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" value="{{userdata.password}}" class="form-control"
+                        id="exampleInputPassword1">
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Mobile number</label>
+                    <input type="number" name="number" value="{{userdata.number}}" class="form-control"
+                        id="validationCustom02" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom03" class="form-label">City</label>
+                    <input type="text" name="city" value="{{userdata.city}}" class="form-control"
+                        id="validationCustom03" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid city.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom04" class="form-label">State</label>
+                    <select class="form-select" name="state" id="validationCustom04" required>
+                        <option selected>{{userdata.state}}</option>
+                        <option>Andhra Pradesh</option>
+                        <option>Arunachal Pradesh</option>
+                        <option>Assam</option>
+                        <option>Bihar</option>
+                        <option>Chhattisgarh</option>
+                        <option>Goa</option>
+                        <option>Gujarat</option>
+                        <option>Haryana</option>
+                        <option>Himachal Pradesh</option>
+                        <option>Jharkhand</option>
+                        <option>Karnataka</option>
+                        <option>Kerala</option>
+                        <option>Madhya Pradesh</option>
+                        <option>Maharashtra</option>
+                        <option>Manipur</option>
+                        <option>Meghalaya</option>
+                        <option>Mizoram</option>
+                        <option>Nagaland</option>
+                        <option>Odisha</option>
+                        <option>Punjab</option>
+                        <option>Rajasthan</option>
+                        <option>Sikkim</option>
+                        <option>Tamil Nadu</option>
+                        <option>Telangana</option>
+                        <option>Tripura</option>
+                        <option>Uttar Pradesh</option>
+                        <option>Uttarakhand</option>
+                        <option>Bengal</option>
+
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid state.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom05" class="form-label">Pincode</label>
+                    <input type="number" name="pincode" value="{{userdata.pincode}}" class="form-control"
+                        id="validationCustom05" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid zip.
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label" for="invalidCheck">
+                            Agree to terms and conditions
+                        </label>
+                        <div class="invalid-feedback">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 ">
+                    <button class="btn btn-dark" name="update" value="update" type="submit">Update Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Update Form End -->
+
+
+</body>
+
+</html>
